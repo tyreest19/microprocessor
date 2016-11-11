@@ -22,7 +22,6 @@ class Decoder(object):
     def convert_to_instruction_format(self):
         """ Converts instruction to r-format"""
         binary = self.binary_instruction_string
-        print(binary)
         self.instruction.update({"Opcode": int(binary[0:6], 2)})
         self.instruction.update({"RS": int(binary[6:11], 2)})
         self.instruction.update({"RT": int(binary[11:16], 2)})
@@ -41,7 +40,7 @@ class Decoder(object):
 
 def main():
     get_input = str(input("enter a hexdecimal: "))
-    instruction = Instruction(get_input)
+    instruction = Decoder(get_input)
     print(instruction.instruction)
 
 
