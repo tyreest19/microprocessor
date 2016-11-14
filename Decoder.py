@@ -1,3 +1,6 @@
+from utils import twos_comp
+
+
 class Decoder(object):
     # transforms a hexdecimal string into instruction format
     instruction = dict()  # the instruction in instruction format
@@ -29,14 +32,7 @@ class Decoder(object):
         self.instruction.update({"Shift": int(binary[21:26], 2)})
         self.instruction.update({"FuncCode": int(binary[26:32], 2)})
         self.instruction.update({"Immed": binary[16:32]})
-        self.instruction["Immed"] = self.twos_comp(int(self.instruction["Immed"],2),len(self.instruction["Immed"]))
-
-    def twos_comp(self, value, bits):
-        """compute the 2's compliment of int value val"""
-        if (value & (1 << (bits - 1))) != 0:  # if sign bit is set e.g., 8bit: 128-255
-            value = value - (1 << bits)  # compute negative value
-        return value  # return positive value as is
-
+        self.instruction["Immed"] = int(twos_comp(self.instruction["Immed"]),2)
 
 def main():
     get_input = str(input("enter a hexdecimal: "))
