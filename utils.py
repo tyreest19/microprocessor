@@ -45,7 +45,9 @@ def convert_hexdicamal_to_binary(hexdecimal,size_of_hexdecimal):
 def twos_comp(binary,negative_number=False):
     """compute the 2's compliment of int value val"""
     binary = list(binary)
-    if binary[0] == '1' or negative_number == True:
+    if int(''.join(binary),2) == 0:
+        return '{0:032b}'.format(int('0'))
+    elif binary[0] == '1' or negative_number == True:
         for i in range(len(binary)):
             if binary[i] == '1':
                 binary[i] = '0'
@@ -55,5 +57,6 @@ def twos_comp(binary,negative_number=False):
         binary = bin(int(binary,2) + 1)
         binary = binary[2:]
     return ''.join(binary)
+
 
 

@@ -8,16 +8,15 @@ def fetch(instructions_file):
             if bits != "\n":
                 binary_string += bits
         decoder = Decoder(binary_string)
-        print(decoder.instruction)
-        #processor.set_instruction(decoder)
-        #processor.print_out_instruction_info()
-        #print(processor.sub_operation("ABCDEFAB","FEDCBAFE"))
+        processor.set_instruction(decoder)
+        processor.start_processor()
 
 def main():
     instruction_file = open("instruction_list.txt",'r')
-    #fetch(instruction_file)
-    processor = Processor()
-    print(processor.print_results())
+    fetch(instruction_file)
+
+
+
 
 if  __name__ == '__main__':
     main()

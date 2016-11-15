@@ -1,6 +1,5 @@
 from utils import twos_comp
 
-
 class Decoder(object):
     # transforms a hexdecimal string into instruction format
     instruction = dict()  # the instruction in instruction format
@@ -32,13 +31,10 @@ class Decoder(object):
         self.instruction.update({"Shift": int(binary[21:26], 2)})
         self.instruction.update({"FuncCode": int(binary[26:32], 2)})
         self.instruction.update({"Immed": binary[16:32]})
-        self.instruction["Immed"] = int(twos_comp(self.instruction["Immed"]),2)
-
-def main():
-    get_input = str(input("enter a hexdecimal: "))
-    instruction = Decoder(get_input)
-    print(instruction.instruction)
+        if self.instruction["Immed"][0] == '1':
+            self.instruction["Immed"] = -1 * int(twos_comp(self.instruction["Immed"]), 2)
+        else:
+            self.instruction["Immed"] = int(self.instruction["Immed"], 2)
 
 
-if __name__ == '__main__':
-    main()
+
