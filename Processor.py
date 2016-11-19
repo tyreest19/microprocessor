@@ -3,7 +3,6 @@ from utils import convert_int_binary
 from  utils import convert_binary_to_hexdicamal
 from utils import convert_hexdicamal_to_binary
 
-
 class Processor(object):
     intial_value = '00000000'
 
@@ -85,6 +84,7 @@ class Processor(object):
         rt = self.register_files[self.instruction.instruction['RT']]
         rs = convert_hexdicamal_to_binary(rs,8)
         rt = convert_hexdicamal_to_binary(rt,8)
+        rt = twos_comp(rt,True)
         result = int(rs,2) + int(rt,2)
         result = convert_int_binary(result,32)
         result = convert_binary_to_hexdicamal(result)

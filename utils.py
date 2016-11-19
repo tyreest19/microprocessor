@@ -8,6 +8,8 @@ def convert_int_binary(number,number_of_bits):
 
 def convert_binary_to_hexdicamal(binary):
     """Convert 32 bit string into 8 bit hexidecimal"""
+    if len(binary) > 32:
+        binary = binary[1:33]
     hexdecimal = ""
     hexdecimal_chars = {'A': '1010', 'B': '1011',
                         'C': '1100', 'D': '1101', 'E': '1110',
@@ -56,6 +58,7 @@ def twos_comp(binary,negative_number=False):
         binary = ''.join(binary)
         binary = bin(int(binary,2) + 1)
         binary = binary[2:]
+    print("binary is:", binary, "number is", int(binary,2))
     return ''.join(binary)
 
 
