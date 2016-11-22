@@ -2,7 +2,7 @@ from utils import twos_comp
 from utils import convert_int_binary
 from  utils import convert_binary_to_hexdicamal
 from utils import convert_hexdicamal_to_binary
-
+from  random import randint
 class Processor(object):
     intial_value = '00000000'
 
@@ -299,5 +299,20 @@ class Processor(object):
             self.register_files[self.instruction.instruction['RD']] = rd
 
 
-
+    def add_virus(self):
+        random_virus_location = randint(0,15)
+        self.memory_location[random_virus_location] = 'ABCD1234'
+        hexdecimal_chars = {10: 'A', 11: 'B',
+                            12: 'C', 13: 'D', 14: 'E',
+                            15: 'F'}
+        for i in range(129):
+            random_memory_value = ""
+            for j in range(8):
+                random_bit = randint(0,15)
+                if random_bit in hexdecimal_chars:
+                    random_memory_value += hexdecimal_chars[random_bit]
+                else:
+                    random_memory_value += str(random_bit)
+            if i != random_virus_location:
+                self.memory_location[i] = str(random_memory_value)
 
